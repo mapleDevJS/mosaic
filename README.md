@@ -1,3 +1,3 @@
-# react-typescript-eslint-webpack
+# Mosaic
 
 Webpack template for a React app with TypeScript and ESLint

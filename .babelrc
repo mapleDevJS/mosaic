@@ -10,6 +10,23 @@
             {
                 "regenerator": true
             }
+        ],
+        [
+            "module-resolver",
+            {
+                "alias": {
+                    "caTypes": "./src/@types/",
+                    "caComponents": "./src/components/",
+                    "caStore": "./src/store/",
+                    "caMocks": "./src/mocks/",
+                    "caDucks": "./src/ducks/",
+                    "caLogics": "./src/logics/",
+                    "caApi": "./src/api/",
+                    "caAssets": "./src/assets/",
+                    "caScreens": "./src/screens/",
+                    "caCommonStyles": "./src/commonStyles/"
+                }
+            }
         ]
     ]
 }

@@ -12,7 +12,20 @@
         "isolatedModules": true,
         "noEmit": true,
         "jsx": "react",
-        "typeRoots": ["src/@types", "./node_modules/@types"]
+        "typeRoots": ["src/@types", "./node_modules/@types"],
+        "baseUrl": ".",
+        "paths": {
+            "caComponents/*": ["src/components/*"],
+            "caStore/*": ["src/store/*"],
+            "caMocks/*": ["src/mocks/*"],
+            "caTypes/*": ["src/@types/*"],
+            "caLogics/*": ["src/logics/*"],
+            "caDucks/*": ["src/ducks/*"],
+            "caApi/*": ["src/api/*"],
+            "caAssets/*": ["src/assets/*"],
+            "caScreens/*": ["src/screens/*"],
+            "caCommonStyles/*": ["src/commonStyles/*"]
+        }
     },
     "include": ["src", "src/@types"]
 }

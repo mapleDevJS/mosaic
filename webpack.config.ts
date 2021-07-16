@@ -1,4 +1,4 @@
-import * as path from 'path';
+import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import ESLintPlugin from 'eslint-webpack-plugin';
@@ -8,14 +8,14 @@ const isProd = process.env.NODE_ENV === 'production';
 
 interface Config extends Configuration {
     devServer: {
-        contentBase: string,
-        historyApiFallback: boolean,
-        port: number,
-        open: boolean,
-        hot: boolean,
-        compress: boolean,
-        watchContentBase: boolean,
-    },
+        contentBase: string;
+        historyApiFallback: boolean;
+        port: number;
+        open: boolean;
+        hot: boolean;
+        compress: boolean;
+        watchContentBase: boolean;
+    };
 }
 
 const config: Config = {
@@ -32,17 +32,10 @@ const config: Config = {
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
-                    options: {
-                        presets: [
-                            '@babel/preset-env',
-                            '@babel/preset-react',
-                            '@babel/preset-typescript',
-                        ],
-                    },
                 },
             },
             {
-                test: /\.css$/i,
+                test: /.css$/,
                 use: ['style-loader', 'css-loader'],
             },
             {
