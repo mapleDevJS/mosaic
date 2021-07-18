@@ -1,0 +1,42 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 768px;
+    min-width: 320px;
+    max-width: 768px;
+    height: 80%;
+    margin: 0 auto;
+
+    padding: 4px 0 0 0;
+    overflow-y: scroll;
+
+    background-color: $color-default-white;
+    border-radius: 10px;
+    box-shadow: 0 1.2px 18px rgba(0, 0, 0, 0.08),
+        0 6.4px 29px rgba(0, 0, 0, 0.12);
+}
+
+.searchName {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 98%;
+    margin: 0 auto;
+    padding: 8px 6px;
+    font-size: 22px;
+    line-height: 30px;
+
+    color: $color-black;
+    border: none;
+    border-bottom: 2px solid $color-default-grey;
+    transition: border-bottom-color 0.3s;
+
+    &::placeholder {
+        color: $color-grey;
+    }
+
+    &:focus {
+        border-bottom-color: $color-darkmagenta;
+        outline: none;
+    }
+}

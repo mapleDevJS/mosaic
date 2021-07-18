@@ -1,34 +1,30 @@
+import React from 'react';
 import StudentComponent from '@components/student/student';
-import { RootState } from '@store/rootReducer';
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import * as $$students from '@ducks/students';
 import { Student } from '@ducks/students';
 import styles from './studentsList.scss';
+import Notification from '@components/notification/Notification';
 
-const StudentsList: React.FC = () => {
-    const dispatch = useDispatch();
+interface Props {
+    students: Student[];
+}
 
-    useEffect(() => {
-        dispatch($$students.actions.loadStudents());
-    }, []);
+const StudentsList: React.FC<Props> = ({ students }) => {
+    if (students.length) {
+        return (
+            <ul className={styles.studentsList}>
+                {students.map((student, idx) => {
+                    const { firstName, lastName } = student;
+                    return (
+                        <li key={`${firstName}${lastName}${idx}`}>
+                            <StudentComponent student={student} />
+                        </li>
+                    );
+                })}
+            </ul>
+        );
+    }
 
-    const students = useSelector<RootState, Student[] | null>(
-        state => state.data.students,
-    );
-
-    return (
-        <ul className={styles.studentsList}>
-            {students?.map((student, idx) => {
-                const { firstName, lastName } = student;
-                return (
-                    <li key={`${firstName}${lastName}${idx}`}>
-                        <StudentComponent student={student} />
-                    </li>
-                );
-            })}
-        </ul>
-    );
+    return <Notification message={'No students found'} />;
 };
 
 export default StudentsList;
