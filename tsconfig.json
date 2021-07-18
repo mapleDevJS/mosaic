@@ -15,16 +15,12 @@
         "typeRoots": ["src/@types", "./node_modules/@types"],
         "baseUrl": ".",
         "paths": {
-            "caComponents/*": ["src/components/*"],
-            "caStore/*": ["src/store/*"],
-            "caMocks/*": ["src/mocks/*"],
-            "caTypes/*": ["src/@types/*"],
-            "caLogics/*": ["src/logics/*"],
-            "caDucks/*": ["src/ducks/*"],
-            "caApi/*": ["src/api/*"],
-            "caAssets/*": ["src/assets/*"],
-            "caScreens/*": ["src/screens/*"],
-            "caCommonStyles/*": ["src/commonStyles/*"]
+            "@components/*": ["src/components/*"],
+            "@store/*": ["src/store/*"],
+            "@types/*": ["src/@types/*"],
+            "@logics/*": ["src/logics/*"],
+            "@ducks/*": ["src/ducks/*"],
+            "@assets/*": ["src/assets/*"],
         }
     },
     "include": ["src", "src/@types"]

@@ -1,19 +1,24 @@
 import React from 'react';
-import { RootState } from 'caStore/rootReducer';
+import { RootState } from '@store/rootReducer';
 import { useSelector } from 'react-redux';
 
-import styles from './app.module.css';
+import styles from './app.scss';
 import StudentsList from './studentsList/studentsList';
-import Error from 'caComponents/error/error';
+import Error from '@components/error/error';
 
 export const App = (): JSX.Element => {
+    const isFetching = useSelector<RootState, boolean>(
+        state => state.data.isFetching,
+    );
+
     const error = useSelector<RootState, Error | null>(
         state => state.data.error,
     );
 
     return (
-        <div className={styles.app}>
+        <section className={styles.app}>
+            {isFetching && <p>Loading...</p>}
             {error ? <Error error={error} /> : <StudentsList />}
-        </div>
+        </section>
     );
 };

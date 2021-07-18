@@ -1,5 +1,5 @@
 import { createLogic } from 'redux-logic';
-import { studentsActionTypes } from 'caDucks/students';
+import { studentsActionTypes } from '@ducks/students';
 
 const API_URL = 'https://api.hatchways.io/assessment';
 

@@ -6,19 +6,13 @@ declare module '*.svg' {
 }
 
 // For CSS
-declare module '*.module.css' {
-    const classes: { [key: string]: string };
-    export default classes;
-}
-
-// For LESS
-declare module '*.module.less' {
+declare module '*.css' {
     const classes: { [key: string]: string };
     export default classes;
 }
 
 // For SCSS
-declare module '*.module.scss' {
+declare module '*.scss' {
     const classes: { [key: string]: string };
     export default classes;
 }

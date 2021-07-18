@@ -1,4 +1,4 @@
-import { RootState } from 'caStore/rootReducer';
+import { RootState } from '@store/rootReducer';
 
 export interface Process<T> {
     getState: () => RootState;

@@ -1,5 +1,5 @@
-import { Student, studentsActionTypes } from 'caDucks/students';
-import { LogicAction } from 'caTypes/types';
+import { Student, studentsActionTypes } from '../../ducks/students';
+import { LogicAction } from '../../@types/types';
 
 export type LoadSuccessStudentsLogic = LogicAction<
     typeof studentsActionTypes.LOAD_SUCCESS,

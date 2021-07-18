@@ -1,0 +1,15 @@
+.studentsList {
+    min-width: 320px;
+    max-width: 768px;
+    height: 80%;
+    margin: 0 auto;
+
+    padding: 0;
+    overflow-y: scroll;
+    list-style: none;
+
+    background-color: $color-default-white;
+    border-radius: 10px;
+    box-shadow: 0 1.2px 18px rgba(0, 0, 0, 0.08),
+        0 6.4px 29px rgba(0, 0, 0, 0.12);
+}

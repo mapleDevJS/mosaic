@@ -1,5 +1,5 @@
 // import { ActionTypes } from 'caTypes/types';
-import { StudentsLogicType } from '../logics/studentsLogic/types';
+import { StudentsLogicType } from '@logics/studentsLogic/types';
 import { ActionTypes } from '../@types/types';
 
 export interface Student {

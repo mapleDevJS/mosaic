@@ -1,0 +1,71 @@
+.studentCard {
+    display: flex;
+    margin: 0;
+    padding: 18px 28px;
+    list-style: none;
+    border-bottom: 2px solid $color-default-grey;
+
+    @media (max-width: 580px) {
+        flex-direction: column;
+    }
+
+    @media (min-width: 320px) and (max-width: 384px) {
+        padding: 18px;
+    }
+}
+
+.avatar {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    width: 136px;
+    @media (max-width: 580px) {
+        align-self: center;
+    }
+}
+
+.picture {
+    border: 2px solid $color-default-grey;
+    border-radius: 50%;
+}
+
+.studentInfo {
+    padding-left: 30px;
+
+    @media (max-width: 580px) {
+        padding-left: 0;
+    }
+}
+
+.names {
+    margin: 0 0 12px 0;
+    font-size: 45px;
+    line-height: 45px;
+    color: $color-black;
+    text-transform: uppercase;
+
+    @media (max-width: 580px) {
+        margin-top: 12px;
+        font-size: 40px;
+    }
+
+    @media (min-width: 320px) and (max-width: 384px) {
+        font-size: 36px;
+    }
+}
+
+.detailsList {
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 26px;
+
+    word-break: break-all;
+
+    @media (min-width: 320px) and (max-width: 384px) {
+        font-size: 16px;
+    }
+}
