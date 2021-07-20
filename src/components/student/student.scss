@@ -1,7 +1,9 @@
 .studentCard {
+    position: relative;
     display: flex;
+    flex-wrap: wrap;
     margin: 0;
-    padding: 18px 28px;
+    padding: 18px 84px 18px 28px;
     list-style: none;
     border-bottom: 2px solid $color-default-grey;
 
@@ -17,7 +19,7 @@
 .avatar {
     display: flex;
     flex-shrink: 0;
-    align-items: center;
+    align-items: flex-start;
     width: 136px;
     @media (max-width: 580px) {
         align-self: center;
@@ -39,8 +41,8 @@
 
 .names {
     margin: 0 0 12px 0;
-    font-size: 45px;
-    line-height: 45px;
+    font-size: 40px;
+    line-height: 40px;
     color: $color-black;
     text-transform: uppercase;
 
@@ -55,18 +57,95 @@
 }
 
 .detailsList {
-    margin: 0;
+    margin: 0 0 12px 0;
     padding: 0;
 
     list-style: none;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 26px;
     color: $color-grey;
 
     word-break: break-all;
 
     @media (min-width: 320px) and (max-width: 384px) {
         font-size: 16px;
+    }
+}
+
+.gradesList {
+    display: block;
+    width: 100%;
+
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 26px;
+    color: $color-grey;
+}
+
+.collapseButton {
+    position: absolute;
+    top: 18px;
+    right: 28px;
+    width: 40px;
+    height: 40px;
+    padding: 4px;
+    font-weight: 500;
+    font-size: 80px;
+    line-height: 28px;
+    color: #aaaaaa;
+    background-color: transparent;
+    border: none;
+
+    &:hover {
+        cursor: pointer;
+
+        &.plus {
+            &:before,
+            &:after {
+                background-color: $color-black;
+            }
+        }
+
+        &.minus {
+            &:before {
+                background-color: $color-black;
+            }
+        }
+    }
+}
+
+.plus {
+    &:before {
+        content: '';
+        position: absolute;
+        top: 17px;
+        left: 8px;
+        width: 24px;
+        height: 6px;
+        background-color: #aaaaaa;
+        border-radius: 2px;
+    }
+
+    &:after {
+        content: '';
+        position: absolute;
+        top: 17px;
+        left: 8px;
+        width: 24px;
+        height: 6px;
+        background-color: #aaaaaa;
+        border-radius: 2px;
+        transform: rotate(90deg);
+    }
+}
+
+.minus {
+    &:before {
+        content: '';
+        position: absolute;
+        top: 17px;
+        left: 8px;
+        width: 24px;
+        height: 6px;
+        background-color: #aaaaaa;
+        border-radius: 2px;
     }
 }
