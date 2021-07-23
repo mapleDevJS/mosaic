@@ -10,6 +10,18 @@ export type LoadErrorStudentsLogic = LogicAction<
     never,
     Error
 >;
+
+export type AddTagStudentsLogic = LogicAction<
+    typeof studentsActionTypes.ADD_TAG_FINISH,
+    { students: Student[] }
+>;
+
+export type RemoveTagStudentsLogic = LogicAction<
+    typeof studentsActionTypes.REMOVE_TAG_FINISH,
+    { students: Student[] }
+>;
 export type StudentsLogicType =
     | LoadSuccessStudentsLogic
-    | LoadErrorStudentsLogic;
+    | LoadErrorStudentsLogic
+    | AddTagStudentsLogic
+    | RemoveTagStudentsLogic;

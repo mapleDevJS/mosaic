@@ -1,7 +1,6 @@
 .studentCard {
     position: relative;
     display: flex;
-    flex-wrap: wrap;
     margin: 0;
     padding: 18px 84px 18px 28px;
     list-style: none;
@@ -73,6 +72,7 @@
 .gradesList {
     display: block;
     width: 100%;
+    margin-bottom: 8px;
 
     font-weight: 500;
     font-size: 18px;
@@ -147,5 +147,25 @@
         height: 6px;
         background-color: #aaaaaa;
         border-radius: 2px;
+    }
+}
+
+.addTag {
+    padding: 4px 2px;
+    font-size: 16px;
+    line-height: 24px;
+
+    color: $color-black;
+    border: none;
+    border-bottom: 2px solid $color-default-grey;
+    transition: border-bottom-color 0.3s;
+
+    &::placeholder {
+        color: $color-grey;
+    }
+
+    &:focus {
+        border-bottom-color: $color-darkmagenta;
+        outline: none;
     }
 }

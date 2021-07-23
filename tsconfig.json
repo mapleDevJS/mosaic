@@ -5,7 +5,6 @@
         "allowSyntheticDefaultImports": true,
         "skipLibCheck": true,
         "esModuleInterop": true,
-        "strict": true,
         "forceConsistentCasingInFileNames": true,
         "moduleResolution": "node",
         "resolveJsonModule": true,
@@ -20,8 +19,8 @@
             "@types/*": ["src/@types/*"],
             "@logics/*": ["src/logics/*"],
             "@ducks/*": ["src/ducks/*"],
-            "@assets/*": ["src/assets/*"],
+            "@assets/*": ["src/assets/*"]
         }
     },
-    "include": ["src", "src/@types"]
+    "include": ["src"],
 }

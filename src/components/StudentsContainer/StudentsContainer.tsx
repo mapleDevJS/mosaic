@@ -1,14 +1,42 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import StudentsList from '@components/studentsList/studentsList';
 import styles from './StudentsContainer.scss';
 import * as $$students from '@ducks/students';
 import { RootState } from '@store/rootReducer';
 import { Student } from '@ducks/students';
-import Notification from '@components/notification/Notification';
+import Notification from '@components/Notification/Notification';
+import { useDebounce } from '../../hooks/useDebounce';
+import StudentsList from '@components/StudentsList/StudentsList';
+
+const filterStudentsByNameAndTag = (
+    students: Student[] | null,
+    name: string,
+    tag: string,
+) => {
+    return students && (name.length !== 0 || tag.length !== 0)
+        ? students.filter(student => {
+              const { firstName, lastName, tags = [] } = student;
+              const fullName = `${firstName}${lastName}`.trim().toLowerCase();
+
+              return (
+                  fullName.includes(name) &&
+                  tags.join('').trim().toLowerCase().includes(tag)
+              );
+          })
+        : students;
+};
 
 const StudentsContainer = () => {
     const dispatch = useDispatch();
+
+    const [searchInputs, setSearchInputs] = useState<{ [k in string]: string }>(
+        { name: '', tag: '' },
+    );
+
+    const { name, tag } = searchInputs;
+
+    const debouncedSearchName = useDebounce(name, 300);
+    const debouncedSearchTag = useDebounce(tag, 300);
 
     useEffect(() => {
         dispatch($$students.actions.loadStudents());
@@ -22,32 +50,60 @@ const StudentsContainer = () => {
         state => state.data.isFetching,
     );
 
-    const [searchName, setSearchName] = useState<string>('');
+    const [filteredStudents, setFilteredStudents] = useState(students);
+
+    useEffect(() => {
+        if (debouncedSearchName || debouncedSearchTag) {
+            setFilteredStudents(
+                filterStudentsByNameAndTag(
+                    students,
+                    debouncedSearchName,
+                    debouncedSearchTag,
+                ),
+            );
+        } else {
+            setFilteredStudents(students);
+        }
+    }, [students, debouncedSearchName, debouncedSearchTag]);
 
     const inputChangeHandler = (evt: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchName(evt.target.value);
+        const { name, value } = evt.target;
+
+        setSearchInputs({
+            ...searchInputs,
+            [name]: value,
+        });
     };
 
-    const filteredStudents = students
-        ? students.filter(({ firstName, lastName }) => {
-              const fullName = `${firstName} ${lastName}`.trim().toLowerCase();
-              return fullName.includes(searchName);
-          })
-        : [];
     return (
         <div className={styles.container}>
             {isFetching ? (
                 <Notification message={'Loading...'} />
             ) : (
                 <>
-                    <input
-                        className={styles.searchName}
-                        type="text"
-                        placeholder="Search by name"
-                        onChange={inputChangeHandler}
-                        value={searchName}
-                    />
-                    <StudentsList students={filteredStudents} />
+                    <div className={styles.filter}>
+                        <input
+                            id="1"
+                            className={styles.searchInput}
+                            type="text"
+                            name="name"
+                            placeholder="Search by name"
+                            onChange={inputChangeHandler}
+                            value={name}
+                        />
+                        <input
+                            id="2"
+                            className={styles.searchInput}
+                            type="text"
+                            name="tag"
+                            placeholder="Search by tag"
+                            onChange={inputChangeHandler}
+                            value={tag}
+                        />
+                    </div>
+                    {filteredStudents && (
+                        <StudentsList students={filteredStudents} />
+                    )}
                 </>
             )}
         </div>

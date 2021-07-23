@@ -1,6 +1,5 @@
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import ESLintPlugin from 'eslint-webpack-plugin';
 
 import { paths } from './paths';
 import { Configuration } from 'webpack';
@@ -10,10 +9,11 @@ const common: Configuration = {
 
     output: {
         path: paths.build,
-        filename: '[name].[contenthash].js',
+        filename: '[name].js',
         publicPath: '/',
         clean: true,
     },
+
     plugins: [
         new CopyWebpackPlugin({
             patterns: [
@@ -33,9 +33,6 @@ const common: Configuration = {
             template: paths.src + '/index.html',
             filename: 'index.html', // output file
         }),
-        new ESLintPlugin({
-            extensions: ['js', 'jsx', 'ts', 'tsx', 'json'],
-        }),
     ],
     module: {
         rules: [
@@ -51,7 +48,7 @@ const common: Configuration = {
                 type: 'asset/resource',
             },
             {
-                test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
+                test: /\.(woff|woff2|eot|ttf|otf)$/i,
                 type: 'asset/resource',
             },
         ],

@@ -2,7 +2,8 @@ import React from 'react';
 import { RootState } from '@store/rootReducer';
 import { useSelector } from 'react-redux';
 import styles from './app.scss';
-import Notification from '@components/notification/Notification';
+import utilsStyles from '../styles/utils.scss';
+import Notification from '@components/Notification/Notification';
 import StudentsContainer from './StudentsContainer/StudentsContainer';
 
 export const App = (): JSX.Element => {
@@ -11,12 +12,15 @@ export const App = (): JSX.Element => {
     );
 
     return (
-        <section className={styles.app}>
+        <div className={styles.app}>
+            <h1 className={utilsStyles.visuallyHidden}>
+                Search of the Students
+            </h1>
             {error ? (
                 <Notification message={error.message} />
             ) : (
                 <StudentsContainer />
             )}
-        </section>
+        </div>
     );
 };

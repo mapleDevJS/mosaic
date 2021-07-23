@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-import webpack, { Configuration as Webpack } from 'webpack';
+import { Configuration as Webpack, HotModuleReplacementPlugin } from 'webpack';
 import { Configuration as WebpackDevServer } from 'webpack-dev-server';
-// import { Configuration } from 'webpack-dev-server';
 import { merge } from 'webpack-merge';
 import { paths } from './paths';
 import common from './webpack.common';
@@ -10,8 +9,6 @@ interface Loader {
     loader: string;
     options?: { [k in string]: unknown };
 }
-
-// type DevServer = Pick<T, "devServer">;
 
 const inlineOptions = (loaders: Loader[]) => {
     return loaders.map(({ loader, options = {} }) => {
@@ -28,13 +25,12 @@ const dev: Configuration = {
     devtool: 'inline-source-map',
 
     devServer: {
-        contentBase: paths.build,
         historyApiFallback: true,
-        port: 4000,
-        open: false,
-        hot: true,
+        contentBase: paths.build,
+        open: true,
         compress: true,
-        watchContentBase: true,
+        hot: true,
+        port: 8080,
     },
 
     module: {
@@ -78,7 +74,7 @@ const dev: Configuration = {
             },
         ],
     },
-    plugins: [new webpack.HotModuleReplacementPlugin()],
+    plugins: [new HotModuleReplacementPlugin()],
 };
 
 export default merge(common, dev);

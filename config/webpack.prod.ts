@@ -14,7 +14,6 @@ const prod: Configuration = {
         path: paths.build,
         publicPath: '/',
         filename: 'js/[name].[contenthash].js',
-        clean: true,
     },
 
     module: {
@@ -56,9 +55,7 @@ const prod: Configuration = {
     optimization: {
         minimize: true,
         minimizer: [new CssMinimizerPlugin(), '...'],
-        runtimeChunk: {
-            name: 'runtime',
-        },
+        runtimeChunk: true,
     },
     performance: {
         hints: false,

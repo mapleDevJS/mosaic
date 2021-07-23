@@ -7,7 +7,7 @@
     height: 80%;
     margin: 0 auto;
 
-    padding: 4px 0 0 0;
+    padding: 0;
     overflow-y: scroll;
 
     background-color: $color-default-white;
@@ -16,7 +16,14 @@
         0 6.4px 29px rgba(0, 0, 0, 0.12);
 }
 
-.searchName {
+.filter {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: $color-default-white;
+}
+
+.searchInput {
     display: flex;
     justify-content: center;
     align-items: center;

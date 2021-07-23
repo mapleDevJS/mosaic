@@ -1,8 +1,8 @@
 import React from 'react';
-import StudentComponent from '@components/student/student';
+import StudentCard from '@components/StudentCard/StudentCard';
 import { Student } from '@ducks/students';
 import styles from './studentsList.scss';
-import Notification from '@components/notification/Notification';
+import Notification from '@components/Notification/Notification';
 
 interface Props {
     students: Student[];
@@ -16,7 +16,7 @@ const StudentsList: React.FC<Props> = ({ students }) => {
                     const { firstName, lastName } = student;
                     return (
                         <li key={`${firstName}${lastName}${idx}`}>
-                            <StudentComponent student={student} />
+                            <StudentCard student={student} />
                         </li>
                     );
                 })}
