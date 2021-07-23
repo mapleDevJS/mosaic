@@ -98,11 +98,15 @@ search by tag input, results that include both the name and tag should be shown.
    ```sh
    yarn install
    ```
-2. Run the project
+2. Install Husky
+   ```sh
+   yarn run prepare
+   ```
+3. Run the project
    ```sh
    yarn run start
    ```
-3. Build the project
+4. Build the project
    ```sh
    yarn run build
    ```

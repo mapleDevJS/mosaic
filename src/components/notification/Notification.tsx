@@ -5,7 +5,7 @@ interface Props {
     message: string;
 }
 
-export const Notification: React.FC<Props> = ({ message }): JSX.Element => {
+const Notification: React.FC<Props> = ({ message }) => {
     return (
         <div className={styles.notification}>
             <p>{message}</p>

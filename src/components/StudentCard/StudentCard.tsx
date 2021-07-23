@@ -10,28 +10,27 @@ interface Props {
     student: Student;
 }
 
-const StudentComponent: React.FC<Props> = ({ student }) => {
+const StudentCard: React.FC<Props> = ({ student }) => {
     const dispatch = useDispatch();
+    const [open, setOpen] = useState<boolean>(false);
+    const [tag, setTag] = useState<string>('');
+
     const { pic, firstName, lastName, email, company, skill, grades, tags } =
         student;
     const averageGrade =
         grades.reduce((total, grade) => total + parseInt(grade), 0) /
         grades.length;
 
-    const [open, setOpen] = useState<boolean>(false);
-
     const clickCollapseButtonHandler = () => {
-        setOpen(!open);
+        setOpen((open: boolean) => !open);
     };
-
-    const [tag, setTag] = useState<string>('');
 
     const inputChangeHandler = (evt: React.ChangeEvent<HTMLInputElement>) => {
         setTag(evt.target.value);
     };
 
     const onKeyPressHandler = (evt: React.KeyboardEvent) => {
-        if (evt.key === 'Enter') {
+        if (evt.key === 'Enter' && tag.trim()) {
             setTag('');
             dispatch($$students.actions.addTag(student.id, tag));
         }
@@ -98,4 +97,4 @@ const StudentComponent: React.FC<Props> = ({ student }) => {
     );
 };
 
-export default StudentComponent;
+export default StudentCard;

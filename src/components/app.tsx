@@ -6,7 +6,7 @@ import utilsStyles from '../styles/utils.scss';
 import Notification from '@components/Notification/Notification';
 import StudentsContainer from './StudentsContainer/StudentsContainer';
 
-export const App = (): JSX.Element => {
+export const App = () => {
     const error = useSelector<RootState, Error | null>(
         state => state.data.error,
     );

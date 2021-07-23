@@ -23,8 +23,33 @@
     border-radius: 2px;
 
     &:hover {
+        position: relative;
         color: $color-default-white;
         background-color: $color-darkmagenta;
         cursor: pointer;
+
+        &:before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            right: 4px;
+            width: 8px;
+            height: 2px;
+            background-color: $color-white;
+            border-radius: 1px;
+            transform: rotate(45deg);
+        }
+
+        &:after {
+            content: '';
+            position: absolute;
+            top: 8px;
+            right: 4px;
+            width: 8px;
+            height: 2px;
+            background-color: $color-white;
+            border-radius: 1px;
+            transform: rotate(135deg);
+        }
     }
 }
