@@ -1,7 +1,7 @@
 import React from 'react';
 import StudentCard from '@components/StudentCard/StudentCard';
 import { Student } from '@ducks/students';
-import styles from './studentsList.scss';
+import styles from './StudentsList.scss';
 import Notification from '@components/Notification/Notification';
 
 interface Props {
