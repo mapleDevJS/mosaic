@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Student } from '@ducks/students';
 import styles from './StudentCard.scss';
 import GradesList from './components/GradesList';
@@ -15,11 +15,12 @@ const StudentCard: React.FC<Props> = ({ student }) => {
     const [open, setOpen] = useState<boolean>(false);
     const [tag, setTag] = useState<string>('');
 
-    const { pic, firstName, lastName, email, company, skill, grades, tags } =
-        student;
-    const averageGrade =
-        grades.reduce((total, grade) => total + parseInt(grade), 0) /
-        grades.length;
+    const { pic, firstName, lastName, email, company, skill, grades, tags } = student;
+
+    const averageGrade = useMemo(
+        () => grades.reduce((total, grade) => total + parseInt(grade), 0) / grades.length,
+        [grades],
+    );
 
     const clickCollapseButtonHandler = () => {
         setOpen((open: boolean) => !open);
@@ -62,19 +63,21 @@ const StudentCard: React.FC<Props> = ({ student }) => {
                     <li className={styles.detail}>Average: {averageGrade}%</li>
                 </ul>
 
-                <div className={styles.gradesList}>
-                    {open && <GradesList grades={grades} />}
-                </div>
+                {open && (
+                    <div className={styles.gradesList}>
+                        <GradesList grades={grades} />
+                    </div>
+                )}
 
-                <div>
-                    {tags && (
+                {tags && (
+                    <div>
                         <Tags
                             tags={tags}
                             onTagClickHandler={tagClickHandler}
                             studentId={student.id}
                         />
-                    )}
-                </div>
+                    </div>
+                )}
 
                 <input
                     className={styles.addTag}
@@ -86,9 +89,7 @@ const StudentCard: React.FC<Props> = ({ student }) => {
                 />
             </div>
             <button
-                className={`${styles.collapseButton} ${
-                    open ? styles.minus : styles.plus
-                }`}
+                className={`${styles.collapseButton} ${open ? styles.minus : styles.plus}`}
                 type="button"
                 aria-label="show/hide student's grades"
                 onClick={clickCollapseButtonHandler}
