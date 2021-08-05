@@ -4,9 +4,9 @@ import styles from './StudentsContainer.scss';
 import * as $$students from '@ducks/students';
 import { RootState } from '@store/rootReducer';
 import { Student } from '@ducks/students';
-import Notification from '@components/Notification/Notification';
+import Message from '@components/Message/Message';
 import { useDebounce } from '../../hooks/useDebounce';
-import StudentsList from '@components/StudentsList/StudentsList';
+import StudentsList from '@components/Students/StudentsList';
 
 const filterStudentsByNameAndTag = (students: Student[] | null, name: string, tag: string) => {
     return students && (name.length !== 0 || tag.length !== 0)
@@ -64,7 +64,7 @@ const StudentsContainer = () => {
     return (
         <div className={styles.container}>
             {isFetching ? (
-                <Notification message={'Loading...'} />
+                <Message message={'Loading...'} />
             ) : (
                 <>
                     <div className={styles.filter}>

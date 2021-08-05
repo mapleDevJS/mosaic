@@ -3,7 +3,7 @@ import { RootState } from '@store/rootReducer';
 import { useSelector } from 'react-redux';
 import styles from './App.scss';
 import utilsStyles from '../../styles/utils.scss';
-import Notification from '@components/Notification/Notification';
+import Message from '@components/Message/Message';
 import StudentsContainer from '../StudentsContainer/StudentsContainer';
 
 export const App = () => {
@@ -12,7 +12,7 @@ export const App = () => {
     return (
         <div className={styles.app}>
             <h1 className={utilsStyles.visuallyHidden}>Search of the Students</h1>
-            {error ? <Notification message={error.message} /> : <StudentsContainer />}
+            {error ? <Message message={error.message} /> : <StudentsContainer />}
         </div>
     );
 };
