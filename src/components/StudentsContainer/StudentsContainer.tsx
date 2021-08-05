@@ -8,20 +8,13 @@ import Notification from '@components/Notification/Notification';
 import { useDebounce } from '../../hooks/useDebounce';
 import StudentsList from '@components/StudentsList/StudentsList';
 
-const filterStudentsByNameAndTag = (
-    students: Student[] | null,
-    name: string,
-    tag: string,
-) => {
+const filterStudentsByNameAndTag = (students: Student[] | null, name: string, tag: string) => {
     return students && (name.length !== 0 || tag.length !== 0)
         ? students.filter(student => {
               const { firstName, lastName, tags = [] } = student;
-              const fullName = `${firstName}${lastName}`.trim().toLowerCase();
+              const fullName = `${firstName} ${lastName}`.trim().toLowerCase();
 
-              return (
-                  fullName.includes(name) &&
-                  tags.join('').trim().toLowerCase().includes(tag)
-              );
+              return fullName.includes(name) && tags.join('').trim().toLowerCase().includes(tag);
           })
         : students;
 };
@@ -29,9 +22,10 @@ const filterStudentsByNameAndTag = (
 const StudentsContainer = () => {
     const dispatch = useDispatch();
 
-    const [searchInputs, setSearchInputs] = useState<{ [k in string]: string }>(
-        { name: '', tag: '' },
-    );
+    const [searchInputs, setSearchInputs] = useState<{ [k in string]: string }>({
+        name: '',
+        tag: '',
+    });
 
     const { name, tag } = searchInputs;
 
@@ -42,24 +36,16 @@ const StudentsContainer = () => {
         dispatch($$students.actions.loadStudents());
     }, []);
 
-    const students = useSelector<RootState, Student[] | null>(
-        state => state.data.students,
-    );
+    const students = useSelector<RootState, Student[] | null>(state => state.data.students);
 
-    const isFetching = useSelector<RootState, boolean>(
-        state => state.data.isFetching,
-    );
+    const isFetching = useSelector<RootState, boolean>(state => state.data.isFetching);
 
     const [filteredStudents, setFilteredStudents] = useState(students);
 
     useEffect(() => {
         if (debouncedSearchName || debouncedSearchTag) {
             setFilteredStudents(
-                filterStudentsByNameAndTag(
-                    students,
-                    debouncedSearchName,
-                    debouncedSearchTag,
-                ),
+                filterStudentsByNameAndTag(students, debouncedSearchName, debouncedSearchTag),
             );
         } else {
             setFilteredStudents(students);
@@ -83,7 +69,6 @@ const StudentsContainer = () => {
                 <>
                     <div className={styles.filter}>
                         <input
-                            id="1"
                             className={styles.searchInput}
                             type="text"
                             name="name"
@@ -92,7 +77,6 @@ const StudentsContainer = () => {
                             value={name}
                         />
                         <input
-                            id="2"
                             className={styles.searchInput}
                             type="text"
                             name="tag"
@@ -101,9 +85,7 @@ const StudentsContainer = () => {
                             value={tag}
                         />
                     </div>
-                    {filteredStudents && (
-                        <StudentsList students={filteredStudents} />
-                    )}
+                    {filteredStudents && <StudentsList students={filteredStudents} />}
                 </>
             )}
         </div>

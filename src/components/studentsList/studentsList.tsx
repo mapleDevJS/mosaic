@@ -12,10 +12,9 @@ const StudentsList: React.FC<Props> = ({ students }) => {
     if (students.length) {
         return (
             <ul className={styles.studentsList}>
-                {students.map((student, idx) => {
-                    const { firstName, lastName } = student;
+                {students.map(student => {
                     return (
-                        <li key={`${firstName}${lastName}${idx}`}>
+                        <li key={student.id}>
                             <StudentCard student={student} />
                         </li>
                     );
