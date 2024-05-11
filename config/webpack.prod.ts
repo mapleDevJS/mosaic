@@ -4,7 +4,7 @@ import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import { merge } from 'webpack-merge';
 import { paths } from './paths';
 import common from './webpack.common';
-import { Configuration } from 'webpack';
+import { Configuration, WebpackPluginInstance } from 'webpack';
 
 const prod: Configuration = {
     mode: 'production',
@@ -50,7 +50,7 @@ const prod: Configuration = {
         new MiniCssExtractPlugin({
             filename: 'styles/[name].[contenthash].css',
             chunkFilename: '[id].css',
-        }),
+        }) as unknown as WebpackPluginInstance,
     ],
     optimization: {
         minimize: true,
