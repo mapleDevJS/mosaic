@@ -1,6 +1,4 @@
-[![LinkedIn][linkedin-shield]][linkedin-url]
-
-[![Netlify Status](https://api.netlify.com/api/v1/badges/19eb1cb0-85a1-4de4-ba71-381f73185dbc/deploy-status)](https://app.netlify.com/sites/condescending-lumiere-24514a/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/19eb1cb0-85a1-4de4-ba71-381f73185dbc/deploy-status)](https://app.netlify.com/sites/mosaic-robots/deploys)
 
 <!-- PROJECT LOGO -->
 <br />
