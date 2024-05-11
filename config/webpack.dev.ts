@@ -26,7 +26,6 @@ const dev: Configuration = {
 
     devServer: {
         historyApiFallback: true,
-        contentBase: paths.build,
         open: true,
         compress: true,
         hot: true,
@@ -37,8 +36,7 @@ const dev: Configuration = {
         rules: [
             {
                 test: /\.(scss|css)$/,
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                use: (info: any) => {
+                use: (info: { resource: string }) => {
                     return inlineOptions([
                         { loader: 'style-loader' },
                         {
@@ -47,9 +45,7 @@ const dev: Configuration = {
                                 sourceMap: true,
                                 importLoaders: 1,
                                 modules: {
-                                    localIdentName: !info.resource.includes(
-                                        'rc-',
-                                    )
+                                    localIdentName: !info.resource.includes('rc-')
                                         ? '[path]-[name]__[local]'
                                         : '[local]',
                                 },
